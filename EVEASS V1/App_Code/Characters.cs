@@ -9,6 +9,12 @@ namespace EVEASS_V1
 {
     public partial class Characters
     {
+        public static Characters GetCharacters(int characterID)
+        {
+            DCEVEDataContext dc = new DCEVEDataContext();
+            return dc.Characters.Single(p => p.CharacterID == characterID);
+        }
+
         public static Characters SignCharcher()
         {
             Characters characters = new Characters();
@@ -71,11 +77,13 @@ namespace EVEASS_V1
             if (csl == null)
                 return false;
 
+            DCEVEDataContext dc = new DCEVEDataContext();
+
             // 清空原有技能数据
-            Main.DC.CharacterSkills.DeleteAllOnSubmit(CharacterSkills);
-            Main.DC.SubmitChanges();
+            dc.CharacterSkills.DeleteAllOnSubmit(CharacterSkills);
+            dc.SubmitChanges();
             
-            var targetSkillID = Main.DC.invTypes.Where(p => CONST.TargetSkillsGroupID.Contains(p.groupID)).Select(p => p.typeID);
+            var targetSkillID = dc.invTypes.Where(p => CONST.TargetSkillsGroupID.Contains(p.groupID)).Select(p => p.typeID);
 
             CharacterSkills skill;
 
@@ -97,12 +105,12 @@ namespace EVEASS_V1
                 CharacterSkills.Add(skill);
             }
 
-            Main.DC.SubmitChanges();
+            dc.SubmitChanges();
 
             // 分析角色能力
             // 制造能力
-            ManuCapability = (from s in Main.DC.industryActivitySkills
-                                  join c in Main.DC.CharacterSkills
+            ManuCapability = (from s in dc.industryActivitySkills
+                                  join c in dc.CharacterSkills
                                   on s.skillID equals c.SkillID
                                   where c.CharacterID == CharacterID && s.activityID == CONST.ManufactActivityID && c.Level >= s.level
                                   select s.skillID).Count();
@@ -117,8 +125,8 @@ namespace EVEASS_V1
                 NumManufactureLine += targetSkill.Level;
 
             // 科研能力
-            ReseCapability = (from s in Main.DC.industryActivitySkills
-                               join c in Main.DC.CharacterSkills
+            ReseCapability = (from s in dc.industryActivitySkills
+                               join c in dc.CharacterSkills
                                on s.skillID equals c.SkillID
                                where c.CharacterID == CharacterID && CONST.ResearchActivitiesID.Contains(s.activityID) && c.Level >= s.level
                                select s.skillID).Count();
@@ -153,7 +161,7 @@ namespace EVEASS_V1
                     NumMarketOrder += targetSkill.Level * 32;
             }
 
-            Main.DC.SubmitChanges();
+            dc.SubmitChanges();
 
             return true;
         }
@@ -225,6 +233,29 @@ namespace EVEASS_V1
             }
 
             return lstOwnedBluePrints;
+        }
+
+        /// <summary>
+        /// 检查角色技能是否满足需求
+        /// </summary>
+        /// <param name="industryActivitySkills">需求技能列表</param>
+        /// <returns></returns>
+        public bool CheckSkills(IEnumerable<industryActivitySkills> industryActivitySkills)
+        {
+            bool result = true;
+            
+            // 遍历技能列表
+            foreach (var s in industryActivitySkills)
+            {
+                // 若角色拥有该技能, 且技能等级大于需求等级, 则返回非空
+                result = CharacterSkills.SingleOrDefault(p => p.SkillID == s.skillID && p.Level >= s.level) != null;
+
+                // 如果有一个技能需求不能满足, 则跳出判断
+                if (!result)
+                    break;
+            }
+
+            return result;
         }
     }
 }

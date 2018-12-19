@@ -26,8 +26,8 @@ namespace EVEASS_V1.ESI_Code
         private const string ESITokenURL = "https://login.eveonline.com/oauth/token";
         private const string ESIAuthorizeURL = "https://login.eveonline.com/oauth/authorize";
         private const string ESIVerifyURL = "https://login.eveonline.com/oauth/verify";
-        private const string ESIPublicURL = "https://esi.evetech.net/latest/";
-        private const string DataSourceString = "?datasource=tranquility";
+        private const string ESIPublicURL = "https://esi.evepc.163.com/latest/";        //"https://esi.evetech.net/latest/";
+        private const string DataSourceString = "?datasource=serenity";                 //"?datasource=tranquility";
         private const string ScopesString = "esi-assets.read_assets.v1"
             + "%20esi-characters.read_standings.v1"
             + "%20esi-industry.read_character_jobs.v1"
@@ -36,6 +36,13 @@ namespace EVEASS_V1.ESI_Code
             + "%20esi-corporations.read_blueprints.v1"
             + "%20esi-industry.read_corporation_jobs.v1"
             + "%20esi-skills.read_skills.v1";
+        
+        // 速率限制
+        // 在发送 ESI 请求时, 最多只能同时发送 400 个请求, 当发送第 401 个请求时, 除非等一会, 否则就会受到速率限制, 
+        // 速率限制是 150 个请求每秒
+        private const int ESIRatePerSecond = 150;
+        private const int ESIBurstSize = 400;
+        private const int ESIMaximumConnections = 20;       // 最大连接数
 
         #endregion
 
@@ -297,9 +304,94 @@ namespace EVEASS_V1.ESI_Code
 
         #endregion
 
+        #region GetIndustryJos
+        
+        /// <summary>
+        /// 获取角色的工业线程
+        /// </summary>
+        /// <param name="characterID"></param>
+        /// <param name="accessToken"></param>
+        /// <param name="includeCompleted">是否包含已完成线程</param>
+        /// <returns></returns>
+        public static List<ESIIndustryJob> GetIndustryJobs(long characterID, string accessToken, bool includeCompleted = false)
+        {
+            string URL = "";
+
+            URL = string.Format("{0}corporations/{1}/industry/jobs/{2}", ESIPublicURL, characterID, DataSourceString);
+
+            if (includeCompleted)
+                URL += "&include_completed=true";
+
+            string returnData = _getPrivateData(URL, accessToken);
+
+            if (!string.IsNullOrEmpty(returnData))
+                return JsonConvert.DeserializeObject<List<ESIIndustryJob>>(returnData);
+            else
+                return null;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region GetMarketData
+
+        //public static bool UpdateMarketPrice(List<MarketPrice> listMarketPrice)
+        //{
+        //    List<Task> listTask = new List<Task>();
+        //    foreach (var mp in listMarketPrice)
+        //    {
+        //        listTask.Add(Task.Run(new Action(() => UpdateMarketPrice(mp))));
+        //    }
+
+        //    Task.WaitAll(listTask.ToArray());
+
+        //    return true;
+        //}
+
+        public static List<ESIMarketPrice> GetMarketPrices(ref DateTime expiresIn)
+        {
+            string URL = "";
+
+            URL = string.Format("{0}markets/prices/{1}", ESIPublicURL, DataSourceString);
+
+            string returnData = _getPublicData(URL, ref expiresIn);
+
+            if (!string.IsNullOrEmpty(returnData))
+                return JsonConvert.DeserializeObject<List<ESIMarketPrice>>(returnData);
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// 从 ESI 获取物品在星域的订单信息
+        /// </summary>
+        /// <param name="typeID">物品ID</param>
+        /// <param name="regionID">星域ID</param>
+        /// <returns></returns>
+        public static List<ESIMarketOrder> GetMarketOrders(int typeID, long regionID, ref DateTime expiresDateTime)
+        {
+            string URL = "";
+
+            URL = string.Format("{0}markets/{1}/orders/{2}&type_id={3}", ESIPublicURL, regionID, DataSourceString, typeID);
+
+            string returnData = _getPublicData(URL, ref expiresDateTime);
+
+            if (!string.IsNullOrEmpty(returnData))
+                return JsonConvert.DeserializeObject<List<ESIMarketOrder>>(returnData);
+            else
+                return null;
+        }
+
         #endregion
 
         #region GetESIData
+
+        private static string _getPublicData(string URL, string bodyData = null, bool retry = true)
+        {
+            DateTime dateTime = new DateTime();
+            return _getPublicData(URL, ref dateTime, bodyData, retry);
+        }
 
         /// <summary>
         /// 获取ESI上的公共信息
@@ -308,10 +400,16 @@ namespace EVEASS_V1.ESI_Code
         /// <param name="bodyData"></param>
         /// <param name="retry"></param>
         /// <returns></returns>
-        private static string _getPublicData(string URL, string bodyData = "", bool retry = true)
+        private static string _getPublicData(string URL, ref DateTime expiresDateTime, string bodyData = null, bool retry = true)
         {
             // 直接通过调用 AccessToken 为空的私有信息获取方法获取
-            return _getPrivateData(URL, null, bodyData, retry);
+            return _getPrivateData(URL, ref expiresDateTime, null, bodyData, retry);
+        }
+
+        private static string _getPrivateData(string URL, string accessToken = null, string bodyData = null, bool retry = true)
+        {
+            DateTime dateTime = new DateTime();
+            return _getPrivateData(URL, ref dateTime, accessToken, bodyData, retry);
         }
 
         /// <summary>
@@ -321,7 +419,7 @@ namespace EVEASS_V1.ESI_Code
         /// <param name="bodyData"></param>
         /// <param name="retry"></param>
         /// <returns></returns>
-        private static string _getPrivateData(string URL,string accessToken = null, string bodyData = null, bool retry = true)
+        private static string _getPrivateData(string URL, ref DateTime expiresDateTime, string accessToken = null, string bodyData = null, bool retry = true, int page = 1)
         {
             string response = "";
             WebClient wc = new WebClient();
@@ -330,6 +428,9 @@ namespace EVEASS_V1.ESI_Code
 
             if (!string.IsNullOrEmpty(accessToken))
                 wc.Headers.Add(HttpRequestHeader.Authorization, string.Format("Bearer {0}", accessToken));
+
+            if (page > 1)
+                URL = string.Format("{0}&page={1}", URL, page);
 
             try
             {
@@ -342,19 +443,19 @@ namespace EVEASS_V1.ESI_Code
                 int pages = -1;
                 int.TryParse(webHeaderCollection["X-Pages"], out pages);
 
-                //string expires = webHeaderCollection["Expires"];
+                string expires = webHeaderCollection["Expires"];
 
-                //if (!string.IsNullOrEmpty(expires))
-                //{
-                //    DateTime cachedate = DateTime.Parse(expires.Substring(expires.IndexOf(',') + 1)).ToLocalTime();   //.Replace("GMT", "")
-                //}
+                if (!string.IsNullOrEmpty(expires))
+                {
+                    expiresDateTime = DateTime.Parse(expires.Substring(expires.IndexOf(',') + 1)).ToLocalTime();
+                }
 
                 if (pages > 1)
                 {
                     string tempResponse = "";
+
                     for (int i = 2; i <= pages; i++)
                     {
-                        // TODO: 多线程?
                         tempResponse = wc.DownloadString(URL + "&page=" + i.ToString());
                         response = response.Substring(0, response.Length - 1) + "," + tempResponse.Substring(1);
                     }
@@ -376,7 +477,7 @@ namespace EVEASS_V1.ESI_Code
                 if (errorCode >= 500 && retry)
                 {
                     Thread.Sleep(2000);
-                    return _getPrivateData(URL, accessToken, bodyData, false);
+                    return _getPrivateData(URL, ref expiresDateTime, accessToken, bodyData, false);
                 }
 
                 MessageBox.Show("公共信息获取失败. 错误代码:" + errorCode.ToString() + ",错误信息:" + ex.Message + "-" + errorResponse);

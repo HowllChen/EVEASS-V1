@@ -30,18 +30,9 @@ namespace EVEASS_V1
 		
     #region 可扩展性方法定义
     partial void OnCreated();
-    partial void InsertCharacterSkills(CharacterSkills instance);
-    partial void UpdateCharacterSkills(CharacterSkills instance);
-    partial void DeleteCharacterSkills(CharacterSkills instance);
-    partial void InsertindustryActivitySkills(industryActivitySkills instance);
-    partial void UpdateindustryActivitySkills(industryActivitySkills instance);
-    partial void DeleteindustryActivitySkills(industryActivitySkills instance);
     partial void InsertinvTypes(invTypes instance);
     partial void UpdateinvTypes(invTypes instance);
     partial void DeleteinvTypes(invTypes instance);
-    partial void InsertCharacters(Characters instance);
-    partial void UpdateCharacters(Characters instance);
-    partial void DeleteCharacters(Characters instance);
     partial void InsertBluePrints(BluePrints instance);
     partial void UpdateBluePrints(BluePrints instance);
     partial void DeleteBluePrints(BluePrints instance);
@@ -51,9 +42,30 @@ namespace EVEASS_V1
     partial void InsertindustryActivities(industryActivities instance);
     partial void UpdateindustryActivities(industryActivities instance);
     partial void DeleteindustryActivities(industryActivities instance);
+    partial void InsertCharacterSkills(CharacterSkills instance);
+    partial void UpdateCharacterSkills(CharacterSkills instance);
+    partial void DeleteCharacterSkills(CharacterSkills instance);
+    partial void InsertCharacters(Characters instance);
+    partial void UpdateCharacters(Characters instance);
+    partial void DeleteCharacters(Characters instance);
+    partial void InsertLocations(Locations instance);
+    partial void UpdateLocations(Locations instance);
+    partial void DeleteLocations(Locations instance);
+    partial void InsertMarketPrice(MarketPrice instance);
+    partial void UpdateMarketPrice(MarketPrice instance);
+    partial void DeleteMarketPrice(MarketPrice instance);
+    partial void InsertindustryActivityProducts(industryActivityProducts instance);
+    partial void UpdateindustryActivityProducts(industryActivityProducts instance);
+    partial void DeleteindustryActivityProducts(industryActivityProducts instance);
+    partial void InsertindustryActivitySkills(industryActivitySkills instance);
+    partial void UpdateindustryActivitySkills(industryActivitySkills instance);
+    partial void DeleteindustryActivitySkills(industryActivitySkills instance);
     partial void InsertOwnedBluePrints(OwnedBluePrints instance);
     partial void UpdateOwnedBluePrints(OwnedBluePrints instance);
     partial void DeleteOwnedBluePrints(OwnedBluePrints instance);
+    partial void InsertUniversePrice(UniversePrice instance);
+    partial void UpdateUniversePrice(UniversePrice instance);
+    partial void DeleteUniversePrice(UniversePrice instance);
     #endregion
 		
 		public DCEVEDataContext() : 
@@ -86,35 +98,11 @@ namespace EVEASS_V1
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<CharacterSkills> CharacterSkills
-		{
-			get
-			{
-				return this.GetTable<CharacterSkills>();
-			}
-		}
-		
-		public System.Data.Linq.Table<industryActivitySkills> industryActivitySkills
-		{
-			get
-			{
-				return this.GetTable<industryActivitySkills>();
-			}
-		}
-		
 		public System.Data.Linq.Table<invTypes> invTypes
 		{
 			get
 			{
 				return this.GetTable<invTypes>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Characters> Characters
-		{
-			get
-			{
-				return this.GetTable<Characters>();
 			}
 		}
 		
@@ -142,6 +130,54 @@ namespace EVEASS_V1
 			}
 		}
 		
+		public System.Data.Linq.Table<CharacterSkills> CharacterSkills
+		{
+			get
+			{
+				return this.GetTable<CharacterSkills>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Characters> Characters
+		{
+			get
+			{
+				return this.GetTable<Characters>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Locations> Locations
+		{
+			get
+			{
+				return this.GetTable<Locations>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MarketPrice> MarketPrice
+		{
+			get
+			{
+				return this.GetTable<MarketPrice>();
+			}
+		}
+		
+		public System.Data.Linq.Table<industryActivityProducts> industryActivityProducts
+		{
+			get
+			{
+				return this.GetTable<industryActivityProducts>();
+			}
+		}
+		
+		public System.Data.Linq.Table<industryActivitySkills> industryActivitySkills
+		{
+			get
+			{
+				return this.GetTable<industryActivitySkills>();
+			}
+		}
+		
 		public System.Data.Linq.Table<OwnedBluePrints> OwnedBluePrints
 		{
 			get
@@ -149,371 +185,12 @@ namespace EVEASS_V1
 				return this.GetTable<OwnedBluePrints>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CharacterSkills")]
-	public partial class CharacterSkills : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _CharacterID;
-		
-		private int _SkillID;
-		
-		private int _Level;
-		
-		private EntityRef<invTypes> _invTypes;
-		
-		private EntityRef<Characters> _Characters;
-		
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCharacterIDChanging(long value);
-    partial void OnCharacterIDChanged();
-    partial void OnSkillIDChanging(int value);
-    partial void OnSkillIDChanged();
-    partial void OnLevelChanging(int value);
-    partial void OnLevelChanged();
-    #endregion
-		
-		public CharacterSkills()
-		{
-			this._invTypes = default(EntityRef<invTypes>);
-			this._Characters = default(EntityRef<Characters>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterID", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long CharacterID
+		public System.Data.Linq.Table<UniversePrice> UniversePrice
 		{
 			get
 			{
-				return this._CharacterID;
-			}
-			set
-			{
-				if ((this._CharacterID != value))
-				{
-					if (this._Characters.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCharacterIDChanging(value);
-					this.SendPropertyChanging();
-					this._CharacterID = value;
-					this.SendPropertyChanged("CharacterID");
-					this.OnCharacterIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SkillID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int SkillID
-		{
-			get
-			{
-				return this._SkillID;
-			}
-			set
-			{
-				if ((this._SkillID != value))
-				{
-					if (this._invTypes.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSkillIDChanging(value);
-					this.SendPropertyChanging();
-					this._SkillID = value;
-					this.SendPropertyChanged("SkillID");
-					this.OnSkillIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Level]", Storage="_Level", DbType="Int NOT NULL")]
-		public int Level
-		{
-			get
-			{
-				return this._Level;
-			}
-			set
-			{
-				if ((this._Level != value))
-				{
-					this.OnLevelChanging(value);
-					this.SendPropertyChanging();
-					this._Level = value;
-					this.SendPropertyChanged("Level");
-					this.OnLevelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_CharacterSkills", Storage="_invTypes", ThisKey="SkillID", OtherKey="typeID", IsForeignKey=true)]
-		public invTypes invTypes
-		{
-			get
-			{
-				return this._invTypes.Entity;
-			}
-			set
-			{
-				invTypes previousValue = this._invTypes.Entity;
-				if (((previousValue != value) 
-							|| (this._invTypes.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._invTypes.Entity = null;
-						previousValue.CharacterSkills.Remove(this);
-					}
-					this._invTypes.Entity = value;
-					if ((value != null))
-					{
-						value.CharacterSkills.Add(this);
-						this._SkillID = value.typeID;
-					}
-					else
-					{
-						this._SkillID = default(int);
-					}
-					this.SendPropertyChanged("invTypes");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Characters_CharacterSkills", Storage="_Characters", ThisKey="CharacterID", OtherKey="CharacterID", IsForeignKey=true)]
-		public Characters Characters
-		{
-			get
-			{
-				return this._Characters.Entity;
-			}
-			set
-			{
-				Characters previousValue = this._Characters.Entity;
-				if (((previousValue != value) 
-							|| (this._Characters.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Characters.Entity = null;
-						previousValue.CharacterSkills.Remove(this);
-					}
-					this._Characters.Entity = value;
-					if ((value != null))
-					{
-						value.CharacterSkills.Add(this);
-						this._CharacterID = value.CharacterID;
-					}
-					else
-					{
-						this._CharacterID = default(long);
-					}
-					this.SendPropertyChanged("Characters");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.industryActivitySkills")]
-	public partial class industryActivitySkills : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _blueprintTypeID;
-		
-		private int _activityID;
-		
-		private int _skillID;
-		
-		private int _level;
-		
-		private EntityRef<invTypes> _invTypes;
-		
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnblueprintTypeIDChanging(int value);
-    partial void OnblueprintTypeIDChanged();
-    partial void OnactivityIDChanging(int value);
-    partial void OnactivityIDChanged();
-    partial void OnskillIDChanging(int value);
-    partial void OnskillIDChanged();
-    partial void OnlevelChanging(int value);
-    partial void OnlevelChanged();
-    #endregion
-		
-		public industryActivitySkills()
-		{
-			this._invTypes = default(EntityRef<invTypes>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_blueprintTypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int blueprintTypeID
-		{
-			get
-			{
-				return this._blueprintTypeID;
-			}
-			set
-			{
-				if ((this._blueprintTypeID != value))
-				{
-					this.OnblueprintTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._blueprintTypeID = value;
-					this.SendPropertyChanged("blueprintTypeID");
-					this.OnblueprintTypeIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activityID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int activityID
-		{
-			get
-			{
-				return this._activityID;
-			}
-			set
-			{
-				if ((this._activityID != value))
-				{
-					this.OnactivityIDChanging(value);
-					this.SendPropertyChanging();
-					this._activityID = value;
-					this.SendPropertyChanged("activityID");
-					this.OnactivityIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skillID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int skillID
-		{
-			get
-			{
-				return this._skillID;
-			}
-			set
-			{
-				if ((this._skillID != value))
-				{
-					if (this._invTypes.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnskillIDChanging(value);
-					this.SendPropertyChanging();
-					this._skillID = value;
-					this.SendPropertyChanged("skillID");
-					this.OnskillIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[level]", Storage="_level", DbType="Int NOT NULL")]
-		public int level
-		{
-			get
-			{
-				return this._level;
-			}
-			set
-			{
-				if ((this._level != value))
-				{
-					this.OnlevelChanging(value);
-					this.SendPropertyChanging();
-					this._level = value;
-					this.SendPropertyChanged("level");
-					this.OnlevelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_industryActivitySkills", Storage="_invTypes", ThisKey="skillID", OtherKey="typeID", IsForeignKey=true)]
-		public invTypes invTypes
-		{
-			get
-			{
-				return this._invTypes.Entity;
-			}
-			set
-			{
-				invTypes previousValue = this._invTypes.Entity;
-				if (((previousValue != value) 
-							|| (this._invTypes.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._invTypes.Entity = null;
-						previousValue.industryActivitySkills.Remove(this);
-					}
-					this._invTypes.Entity = value;
-					if ((value != null))
-					{
-						value.industryActivitySkills.Add(this);
-						this._skillID = value.typeID;
-					}
-					else
-					{
-						this._skillID = default(int);
-					}
-					this.SendPropertyChanged("invTypes");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<UniversePrice>();
 			}
 		}
 	}
@@ -566,13 +243,17 @@ namespace EVEASS_V1
 		
 		private string _typeNameCN;
 		
-		private EntitySet<CharacterSkills> _CharacterSkills;
-		
-		private EntitySet<industryActivitySkills> _industryActivitySkills;
-		
 		private EntityRef<BluePrints> _BluePrints;
 		
 		private EntitySet<industryActivityMaterials> _industryActivityMaterials;
+		
+		private EntitySet<CharacterSkills> _CharacterSkills;
+		
+		private EntitySet<MarketPrice> _MarketPrice;
+		
+		private EntitySet<industryActivityProducts> _industryActivityProducts;
+		
+		private EntityRef<UniversePrice> _UniversePrice;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -624,10 +305,12 @@ namespace EVEASS_V1
 		
 		public invTypes()
 		{
-			this._CharacterSkills = new EntitySet<CharacterSkills>(new Action<CharacterSkills>(this.attach_CharacterSkills), new Action<CharacterSkills>(this.detach_CharacterSkills));
-			this._industryActivitySkills = new EntitySet<industryActivitySkills>(new Action<industryActivitySkills>(this.attach_industryActivitySkills), new Action<industryActivitySkills>(this.detach_industryActivitySkills));
 			this._BluePrints = default(EntityRef<BluePrints>);
 			this._industryActivityMaterials = new EntitySet<industryActivityMaterials>(new Action<industryActivityMaterials>(this.attach_industryActivityMaterials), new Action<industryActivityMaterials>(this.detach_industryActivityMaterials));
+			this._CharacterSkills = new EntitySet<CharacterSkills>(new Action<CharacterSkills>(this.attach_CharacterSkills), new Action<CharacterSkills>(this.detach_CharacterSkills));
+			this._MarketPrice = new EntitySet<MarketPrice>(new Action<MarketPrice>(this.attach_MarketPrice), new Action<MarketPrice>(this.detach_MarketPrice));
+			this._industryActivityProducts = new EntitySet<industryActivityProducts>(new Action<industryActivityProducts>(this.attach_industryActivityProducts), new Action<industryActivityProducts>(this.detach_industryActivityProducts));
+			this._UniversePrice = default(EntityRef<UniversePrice>);
 			OnCreated();
 		}
 		
@@ -1051,32 +734,6 @@ namespace EVEASS_V1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_CharacterSkills", Storage="_CharacterSkills", ThisKey="typeID", OtherKey="SkillID")]
-		public EntitySet<CharacterSkills> CharacterSkills
-		{
-			get
-			{
-				return this._CharacterSkills;
-			}
-			set
-			{
-				this._CharacterSkills.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_industryActivitySkills", Storage="_industryActivitySkills", ThisKey="typeID", OtherKey="skillID")]
-		public EntitySet<industryActivitySkills> industryActivitySkills
-		{
-			get
-			{
-				return this._industryActivitySkills;
-			}
-			set
-			{
-				this._industryActivitySkills.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_BluePrints", Storage="_BluePrints", ThisKey="typeID", OtherKey="BluePrintTypeID", IsUnique=true, IsForeignKey=false)]
 		public BluePrints BluePrints
 		{
@@ -1119,6 +776,74 @@ namespace EVEASS_V1
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_CharacterSkills", Storage="_CharacterSkills", ThisKey="typeID", OtherKey="SkillID")]
+		public EntitySet<CharacterSkills> CharacterSkills
+		{
+			get
+			{
+				return this._CharacterSkills;
+			}
+			set
+			{
+				this._CharacterSkills.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_MarketPrice", Storage="_MarketPrice", ThisKey="typeID", OtherKey="TypeID")]
+		public EntitySet<MarketPrice> MarketPrice
+		{
+			get
+			{
+				return this._MarketPrice;
+			}
+			set
+			{
+				this._MarketPrice.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_industryActivityProducts", Storage="_industryActivityProducts", ThisKey="typeID", OtherKey="productTypeID")]
+		public EntitySet<industryActivityProducts> industryActivityProducts
+		{
+			get
+			{
+				return this._industryActivityProducts;
+			}
+			set
+			{
+				this._industryActivityProducts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_UniversePrice", Storage="_UniversePrice", ThisKey="typeID", OtherKey="TypeID", IsUnique=true, IsForeignKey=false)]
+		public UniversePrice UniversePrice
+		{
+			get
+			{
+				return this._UniversePrice.Entity;
+			}
+			set
+			{
+				UniversePrice previousValue = this._UniversePrice.Entity;
+				if (((previousValue != value) 
+							|| (this._UniversePrice.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._UniversePrice.Entity = null;
+						previousValue.invTypes = null;
+					}
+					this._UniversePrice.Entity = value;
+					if ((value != null))
+					{
+						value.invTypes = this;
+					}
+					this.SendPropertyChanged("UniversePrice");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1139,6 +864,18 @@ namespace EVEASS_V1
 			}
 		}
 		
+		private void attach_industryActivityMaterials(industryActivityMaterials entity)
+		{
+			this.SendPropertyChanging();
+			entity.invTypeMaterial = this;
+		}
+		
+		private void detach_industryActivityMaterials(industryActivityMaterials entity)
+		{
+			this.SendPropertyChanging();
+			entity.invTypeMaterial = null;
+		}
+		
 		private void attach_CharacterSkills(CharacterSkills entity)
 		{
 			this.SendPropertyChanging();
@@ -1151,28 +888,902 @@ namespace EVEASS_V1
 			entity.invTypes = null;
 		}
 		
-		private void attach_industryActivitySkills(industryActivitySkills entity)
+		private void attach_MarketPrice(MarketPrice entity)
 		{
 			this.SendPropertyChanging();
 			entity.invTypes = this;
 		}
 		
-		private void detach_industryActivitySkills(industryActivitySkills entity)
+		private void detach_MarketPrice(MarketPrice entity)
 		{
 			this.SendPropertyChanging();
 			entity.invTypes = null;
+		}
+		
+		private void attach_industryActivityProducts(industryActivityProducts entity)
+		{
+			this.SendPropertyChanging();
+			entity.invTypes = this;
+		}
+		
+		private void detach_industryActivityProducts(industryActivityProducts entity)
+		{
+			this.SendPropertyChanging();
+			entity.invTypes = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BluePrints")]
+	public partial class BluePrints : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _BluePrintTypeID;
+		
+		private int _MaxProductionLimit;
+		
+		private int _MetaGroupID;
+		
+		private bool _OnMarket;
+		
+		private EntitySet<industryActivityMaterials> _industryActivityMaterials;
+		
+		private EntitySet<industryActivities> _industryActivities;
+		
+		private EntitySet<industryActivityProducts> _industryActivityProducts;
+		
+		private EntitySet<industryActivitySkills> _industryActivitySkills;
+		
+		private EntitySet<OwnedBluePrints> _OwnedBluePrints;
+		
+		private EntityRef<invTypes> _invTypes;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBluePrintTypeIDChanging(int value);
+    partial void OnBluePrintTypeIDChanged();
+    partial void OnMaxProductionLimitChanging(int value);
+    partial void OnMaxProductionLimitChanged();
+    partial void OnMetaGroupIDChanging(int value);
+    partial void OnMetaGroupIDChanged();
+    partial void OnOnMarketChanging(bool value);
+    partial void OnOnMarketChanged();
+    #endregion
+		
+		public BluePrints()
+		{
+			this._industryActivityMaterials = new EntitySet<industryActivityMaterials>(new Action<industryActivityMaterials>(this.attach_industryActivityMaterials), new Action<industryActivityMaterials>(this.detach_industryActivityMaterials));
+			this._industryActivities = new EntitySet<industryActivities>(new Action<industryActivities>(this.attach_industryActivities), new Action<industryActivities>(this.detach_industryActivities));
+			this._industryActivityProducts = new EntitySet<industryActivityProducts>(new Action<industryActivityProducts>(this.attach_industryActivityProducts), new Action<industryActivityProducts>(this.detach_industryActivityProducts));
+			this._industryActivitySkills = new EntitySet<industryActivitySkills>(new Action<industryActivitySkills>(this.attach_industryActivitySkills), new Action<industryActivitySkills>(this.detach_industryActivitySkills));
+			this._OwnedBluePrints = new EntitySet<OwnedBluePrints>(new Action<OwnedBluePrints>(this.attach_OwnedBluePrints), new Action<OwnedBluePrints>(this.detach_OwnedBluePrints));
+			this._invTypes = default(EntityRef<invTypes>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BluePrintTypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int BluePrintTypeID
+		{
+			get
+			{
+				return this._BluePrintTypeID;
+			}
+			set
+			{
+				if ((this._BluePrintTypeID != value))
+				{
+					if (this._invTypes.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBluePrintTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._BluePrintTypeID = value;
+					this.SendPropertyChanged("BluePrintTypeID");
+					this.OnBluePrintTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxProductionLimit", DbType="Int NOT NULL")]
+		public int MaxProductionLimit
+		{
+			get
+			{
+				return this._MaxProductionLimit;
+			}
+			set
+			{
+				if ((this._MaxProductionLimit != value))
+				{
+					this.OnMaxProductionLimitChanging(value);
+					this.SendPropertyChanging();
+					this._MaxProductionLimit = value;
+					this.SendPropertyChanged("MaxProductionLimit");
+					this.OnMaxProductionLimitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetaGroupID", DbType="Int NOT NULL")]
+		public int MetaGroupID
+		{
+			get
+			{
+				return this._MetaGroupID;
+			}
+			set
+			{
+				if ((this._MetaGroupID != value))
+				{
+					this.OnMetaGroupIDChanging(value);
+					this.SendPropertyChanging();
+					this._MetaGroupID = value;
+					this.SendPropertyChanged("MetaGroupID");
+					this.OnMetaGroupIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OnMarket", DbType="Bit NOT NULL")]
+		public bool OnMarket
+		{
+			get
+			{
+				return this._OnMarket;
+			}
+			set
+			{
+				if ((this._OnMarket != value))
+				{
+					this.OnOnMarketChanging(value);
+					this.SendPropertyChanging();
+					this._OnMarket = value;
+					this.SendPropertyChanged("OnMarket");
+					this.OnOnMarketChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivityMaterials", Storage="_industryActivityMaterials", ThisKey="BluePrintTypeID", OtherKey="blueprintTypeID")]
+		public EntitySet<industryActivityMaterials> industryActivityMaterials
+		{
+			get
+			{
+				return this._industryActivityMaterials;
+			}
+			set
+			{
+				this._industryActivityMaterials.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivities", Storage="_industryActivities", ThisKey="BluePrintTypeID", OtherKey="blueprintTypeID")]
+		public EntitySet<industryActivities> industryActivities
+		{
+			get
+			{
+				return this._industryActivities;
+			}
+			set
+			{
+				this._industryActivities.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivityProducts", Storage="_industryActivityProducts", ThisKey="BluePrintTypeID", OtherKey="blueprintTypeID")]
+		public EntitySet<industryActivityProducts> industryActivityProducts
+		{
+			get
+			{
+				return this._industryActivityProducts;
+			}
+			set
+			{
+				this._industryActivityProducts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivitySkills", Storage="_industryActivitySkills", ThisKey="BluePrintTypeID", OtherKey="blueprintTypeID")]
+		public EntitySet<industryActivitySkills> industryActivitySkills
+		{
+			get
+			{
+				return this._industryActivitySkills;
+			}
+			set
+			{
+				this._industryActivitySkills.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_OwnedBluePrints", Storage="_OwnedBluePrints", ThisKey="BluePrintTypeID", OtherKey="BluePrintID")]
+		public EntitySet<OwnedBluePrints> OwnedBluePrints
+		{
+			get
+			{
+				return this._OwnedBluePrints;
+			}
+			set
+			{
+				this._OwnedBluePrints.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_BluePrints", Storage="_invTypes", ThisKey="BluePrintTypeID", OtherKey="typeID", IsForeignKey=true)]
+		public invTypes invTypes
+		{
+			get
+			{
+				return this._invTypes.Entity;
+			}
+			set
+			{
+				invTypes previousValue = this._invTypes.Entity;
+				if (((previousValue != value) 
+							|| (this._invTypes.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._invTypes.Entity = null;
+						previousValue.BluePrints = null;
+					}
+					this._invTypes.Entity = value;
+					if ((value != null))
+					{
+						value.BluePrints = this;
+						this._BluePrintTypeID = value.typeID;
+					}
+					else
+					{
+						this._BluePrintTypeID = default(int);
+					}
+					this.SendPropertyChanged("invTypes");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 		
 		private void attach_industryActivityMaterials(industryActivityMaterials entity)
 		{
 			this.SendPropertyChanging();
-			entity.invTypes = this;
+			entity.BluePrints = this;
 		}
 		
 		private void detach_industryActivityMaterials(industryActivityMaterials entity)
 		{
 			this.SendPropertyChanging();
-			entity.invTypes = null;
+			entity.BluePrints = null;
+		}
+		
+		private void attach_industryActivities(industryActivities entity)
+		{
+			this.SendPropertyChanging();
+			entity.BluePrints = this;
+		}
+		
+		private void detach_industryActivities(industryActivities entity)
+		{
+			this.SendPropertyChanging();
+			entity.BluePrints = null;
+		}
+		
+		private void attach_industryActivityProducts(industryActivityProducts entity)
+		{
+			this.SendPropertyChanging();
+			entity.BluePrints = this;
+		}
+		
+		private void detach_industryActivityProducts(industryActivityProducts entity)
+		{
+			this.SendPropertyChanging();
+			entity.BluePrints = null;
+		}
+		
+		private void attach_industryActivitySkills(industryActivitySkills entity)
+		{
+			this.SendPropertyChanging();
+			entity.BluePrints = this;
+		}
+		
+		private void detach_industryActivitySkills(industryActivitySkills entity)
+		{
+			this.SendPropertyChanging();
+			entity.BluePrints = null;
+		}
+		
+		private void attach_OwnedBluePrints(OwnedBluePrints entity)
+		{
+			this.SendPropertyChanging();
+			entity.BluePrints = this;
+		}
+		
+		private void detach_OwnedBluePrints(OwnedBluePrints entity)
+		{
+			this.SendPropertyChanging();
+			entity.BluePrints = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.industryActivityMaterials")]
+	public partial class industryActivityMaterials : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _blueprintTypeID;
+		
+		private int _activityID;
+		
+		private int _materialTypeID;
+		
+		private int _quantity;
+		
+		private EntityRef<BluePrints> _BluePrints;
+		
+		private EntityRef<invTypes> _invTypes;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnblueprintTypeIDChanging(int value);
+    partial void OnblueprintTypeIDChanged();
+    partial void OnactivityIDChanging(int value);
+    partial void OnactivityIDChanged();
+    partial void OnmaterialTypeIDChanging(int value);
+    partial void OnmaterialTypeIDChanged();
+    partial void OnquantityChanging(int value);
+    partial void OnquantityChanged();
+    #endregion
+		
+		public industryActivityMaterials()
+		{
+			this._BluePrints = default(EntityRef<BluePrints>);
+			this._invTypes = default(EntityRef<invTypes>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_blueprintTypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int blueprintTypeID
+		{
+			get
+			{
+				return this._blueprintTypeID;
+			}
+			set
+			{
+				if ((this._blueprintTypeID != value))
+				{
+					if (this._BluePrints.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnblueprintTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._blueprintTypeID = value;
+					this.SendPropertyChanged("blueprintTypeID");
+					this.OnblueprintTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activityID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int activityID
+		{
+			get
+			{
+				return this._activityID;
+			}
+			set
+			{
+				if ((this._activityID != value))
+				{
+					this.OnactivityIDChanging(value);
+					this.SendPropertyChanging();
+					this._activityID = value;
+					this.SendPropertyChanged("activityID");
+					this.OnactivityIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_materialTypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int materialTypeID
+		{
+			get
+			{
+				return this._materialTypeID;
+			}
+			set
+			{
+				if ((this._materialTypeID != value))
+				{
+					if (this._invTypes.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnmaterialTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._materialTypeID = value;
+					this.SendPropertyChanged("materialTypeID");
+					this.OnmaterialTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity", DbType="Int NOT NULL")]
+		public int quantity
+		{
+			get
+			{
+				return this._quantity;
+			}
+			set
+			{
+				if ((this._quantity != value))
+				{
+					this.OnquantityChanging(value);
+					this.SendPropertyChanging();
+					this._quantity = value;
+					this.SendPropertyChanged("quantity");
+					this.OnquantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivityMaterials", Storage="_BluePrints", ThisKey="blueprintTypeID", OtherKey="BluePrintTypeID", IsForeignKey=true)]
+		public BluePrints BluePrints
+		{
+			get
+			{
+				return this._BluePrints.Entity;
+			}
+			set
+			{
+				BluePrints previousValue = this._BluePrints.Entity;
+				if (((previousValue != value) 
+							|| (this._BluePrints.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._BluePrints.Entity = null;
+						previousValue.industryActivityMaterials.Remove(this);
+					}
+					this._BluePrints.Entity = value;
+					if ((value != null))
+					{
+						value.industryActivityMaterials.Add(this);
+						this._blueprintTypeID = value.BluePrintTypeID;
+					}
+					else
+					{
+						this._blueprintTypeID = default(int);
+					}
+					this.SendPropertyChanged("BluePrints");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_industryActivityMaterials", Storage="_invTypes", ThisKey="materialTypeID", OtherKey="typeID", IsForeignKey=true)]
+		public invTypes invTypeMaterial
+		{
+			get
+			{
+				return this._invTypes.Entity;
+			}
+			set
+			{
+				invTypes previousValue = this._invTypes.Entity;
+				if (((previousValue != value) 
+							|| (this._invTypes.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._invTypes.Entity = null;
+						previousValue.industryActivityMaterials.Remove(this);
+					}
+					this._invTypes.Entity = value;
+					if ((value != null))
+					{
+						value.industryActivityMaterials.Add(this);
+						this._materialTypeID = value.typeID;
+					}
+					else
+					{
+						this._materialTypeID = default(int);
+					}
+					this.SendPropertyChanged("invTypeMaterial");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.industryActivities")]
+	public partial class industryActivities : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _blueprintTypeID;
+		
+		private int _activityID;
+		
+		private int _time;
+		
+		private EntityRef<BluePrints> _BluePrints;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnblueprintTypeIDChanging(int value);
+    partial void OnblueprintTypeIDChanged();
+    partial void OnactivityIDChanging(int value);
+    partial void OnactivityIDChanged();
+    partial void OntimeChanging(int value);
+    partial void OntimeChanged();
+    #endregion
+		
+		public industryActivities()
+		{
+			this._BluePrints = default(EntityRef<BluePrints>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_blueprintTypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int blueprintTypeID
+		{
+			get
+			{
+				return this._blueprintTypeID;
+			}
+			set
+			{
+				if ((this._blueprintTypeID != value))
+				{
+					if (this._BluePrints.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnblueprintTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._blueprintTypeID = value;
+					this.SendPropertyChanged("blueprintTypeID");
+					this.OnblueprintTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_activityID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int activityID
+		{
+			get
+			{
+				return this._activityID;
+			}
+			set
+			{
+				if ((this._activityID != value))
+				{
+					this.OnactivityIDChanging(value);
+					this.SendPropertyChanging();
+					this._activityID = value;
+					this.SendPropertyChanged("activityID");
+					this.OnactivityIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_time", DbType="Int NOT NULL")]
+		public int time
+		{
+			get
+			{
+				return this._time;
+			}
+			set
+			{
+				if ((this._time != value))
+				{
+					this.OntimeChanging(value);
+					this.SendPropertyChanging();
+					this._time = value;
+					this.SendPropertyChanged("time");
+					this.OntimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivities", Storage="_BluePrints", ThisKey="blueprintTypeID", OtherKey="BluePrintTypeID", IsForeignKey=true)]
+		public BluePrints BluePrints
+		{
+			get
+			{
+				return this._BluePrints.Entity;
+			}
+			set
+			{
+				BluePrints previousValue = this._BluePrints.Entity;
+				if (((previousValue != value) 
+							|| (this._BluePrints.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._BluePrints.Entity = null;
+						previousValue.industryActivities.Remove(this);
+					}
+					this._BluePrints.Entity = value;
+					if ((value != null))
+					{
+						value.industryActivities.Add(this);
+						this._blueprintTypeID = value.BluePrintTypeID;
+					}
+					else
+					{
+						this._blueprintTypeID = default(int);
+					}
+					this.SendPropertyChanged("BluePrints");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CharacterSkills")]
+	public partial class CharacterSkills : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _CharacterID;
+		
+		private int _SkillID;
+		
+		private int _Level;
+		
+		private EntityRef<invTypes> _invTypes;
+		
+		private EntityRef<Characters> _Characters;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCharacterIDChanging(int value);
+    partial void OnCharacterIDChanged();
+    partial void OnSkillIDChanging(int value);
+    partial void OnSkillIDChanged();
+    partial void OnLevelChanging(int value);
+    partial void OnLevelChanged();
+    #endregion
+		
+		public CharacterSkills()
+		{
+			this._invTypes = default(EntityRef<invTypes>);
+			this._Characters = default(EntityRef<Characters>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int CharacterID
+		{
+			get
+			{
+				return this._CharacterID;
+			}
+			set
+			{
+				if ((this._CharacterID != value))
+				{
+					if (this._Characters.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCharacterIDChanging(value);
+					this.SendPropertyChanging();
+					this._CharacterID = value;
+					this.SendPropertyChanged("CharacterID");
+					this.OnCharacterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SkillID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int SkillID
+		{
+			get
+			{
+				return this._SkillID;
+			}
+			set
+			{
+				if ((this._SkillID != value))
+				{
+					if (this._invTypes.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSkillIDChanging(value);
+					this.SendPropertyChanging();
+					this._SkillID = value;
+					this.SendPropertyChanged("SkillID");
+					this.OnSkillIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Level]", Storage="_Level", DbType="Int NOT NULL")]
+		public int Level
+		{
+			get
+			{
+				return this._Level;
+			}
+			set
+			{
+				if ((this._Level != value))
+				{
+					this.OnLevelChanging(value);
+					this.SendPropertyChanging();
+					this._Level = value;
+					this.SendPropertyChanged("Level");
+					this.OnLevelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_CharacterSkills", Storage="_invTypes", ThisKey="SkillID", OtherKey="typeID", IsForeignKey=true)]
+		public invTypes invTypes
+		{
+			get
+			{
+				return this._invTypes.Entity;
+			}
+			set
+			{
+				invTypes previousValue = this._invTypes.Entity;
+				if (((previousValue != value) 
+							|| (this._invTypes.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._invTypes.Entity = null;
+						previousValue.CharacterSkills.Remove(this);
+					}
+					this._invTypes.Entity = value;
+					if ((value != null))
+					{
+						value.CharacterSkills.Add(this);
+						this._SkillID = value.typeID;
+					}
+					else
+					{
+						this._SkillID = default(int);
+					}
+					this.SendPropertyChanged("invTypes");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Characters_CharacterSkills", Storage="_Characters", ThisKey="CharacterID", OtherKey="CharacterID", IsForeignKey=true)]
+		public Characters Characters
+		{
+			get
+			{
+				return this._Characters.Entity;
+			}
+			set
+			{
+				Characters previousValue = this._Characters.Entity;
+				if (((previousValue != value) 
+							|| (this._Characters.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Characters.Entity = null;
+						previousValue.CharacterSkills.Remove(this);
+					}
+					this._Characters.Entity = value;
+					if ((value != null))
+					{
+						value.CharacterSkills.Add(this);
+						this._CharacterID = value.CharacterID;
+					}
+					else
+					{
+						this._CharacterID = default(int);
+					}
+					this.SendPropertyChanged("Characters");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -1182,7 +1793,7 @@ namespace EVEASS_V1
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private long _CharacterID;
+		private int _CharacterID;
 		
 		private int _CorporationID;
 		
@@ -1216,7 +1827,7 @@ namespace EVEASS_V1
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnCharacterIDChanging(long value);
+    partial void OnCharacterIDChanging(int value);
     partial void OnCharacterIDChanged();
     partial void OnCorporationIDChanging(int value);
     partial void OnCorporationIDChanged();
@@ -1251,8 +1862,8 @@ namespace EVEASS_V1
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterID", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long CharacterID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CharacterID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int CharacterID
 		{
 			get
 			{
@@ -1582,205 +2193,300 @@ namespace EVEASS_V1
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BluePrints")]
-	public partial class BluePrints : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Locations")]
+	public partial class Locations : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _BluePrintTypeID;
+		private long _LocationID;
 		
-		private int _MaxProductionLimit;
+		private string _LocationName;
 		
-		private int _MetaGroupID;
+		private int _RegionID;
 		
-		private bool _OnMarket;
+		private double _SellTex;
 		
-		private EntitySet<industryActivityMaterials> _industryActivityMaterials;
+		private double _AgencyFee;
 		
-		private EntitySet<industryActivities> _industryActivities;
+		private double _ManufactCostIndex;
 		
-		private EntitySet<OwnedBluePrints> _OwnedBluePrints;
+		private double _MECostIndex;
 		
-		private EntityRef<invTypes> _invTypes;
+		private double _TECostIndex;
+		
+		private double _CopyCostIndex;
+		
+		private double _InventionCostIndex;
+		
+		private double _ReactionCostIndex;
+		
+		private EntitySet<MarketPrice> _MarketPrice;
 		
     #region 可扩展性方法定义
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnBluePrintTypeIDChanging(int value);
-    partial void OnBluePrintTypeIDChanged();
-    partial void OnMaxProductionLimitChanging(int value);
-    partial void OnMaxProductionLimitChanged();
-    partial void OnMetaGroupIDChanging(int value);
-    partial void OnMetaGroupIDChanged();
-    partial void OnOnMarketChanging(bool value);
-    partial void OnOnMarketChanged();
+    partial void OnLocationIDChanging(long value);
+    partial void OnLocationIDChanged();
+    partial void OnLocationNameChanging(string value);
+    partial void OnLocationNameChanged();
+    partial void OnRegionIDChanging(int value);
+    partial void OnRegionIDChanged();
+    partial void OnSellTexChanging(double value);
+    partial void OnSellTexChanged();
+    partial void OnAgencyFeeChanging(double value);
+    partial void OnAgencyFeeChanged();
+    partial void OnManufactCostIndexChanging(double value);
+    partial void OnManufactCostIndexChanged();
+    partial void OnMECostIndexChanging(double value);
+    partial void OnMECostIndexChanged();
+    partial void OnTECostIndexChanging(double value);
+    partial void OnTECostIndexChanged();
+    partial void OnCopyCostIndexChanging(double value);
+    partial void OnCopyCostIndexChanged();
+    partial void OnInventionCostIndexChanging(double value);
+    partial void OnInventionCostIndexChanged();
+    partial void OnReactionCostIndexChanging(double value);
+    partial void OnReactionCostIndexChanged();
     #endregion
 		
-		public BluePrints()
+		public Locations()
 		{
-			this._industryActivityMaterials = new EntitySet<industryActivityMaterials>(new Action<industryActivityMaterials>(this.attach_industryActivityMaterials), new Action<industryActivityMaterials>(this.detach_industryActivityMaterials));
-			this._industryActivities = new EntitySet<industryActivities>(new Action<industryActivities>(this.attach_industryActivities), new Action<industryActivities>(this.detach_industryActivities));
-			this._OwnedBluePrints = new EntitySet<OwnedBluePrints>(new Action<OwnedBluePrints>(this.attach_OwnedBluePrints), new Action<OwnedBluePrints>(this.detach_OwnedBluePrints));
-			this._invTypes = default(EntityRef<invTypes>);
+			this._MarketPrice = new EntitySet<MarketPrice>(new Action<MarketPrice>(this.attach_MarketPrice), new Action<MarketPrice>(this.detach_MarketPrice));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BluePrintTypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int BluePrintTypeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationID", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long LocationID
 		{
 			get
 			{
-				return this._BluePrintTypeID;
+				return this._LocationID;
 			}
 			set
 			{
-				if ((this._BluePrintTypeID != value))
+				if ((this._LocationID != value))
 				{
-					if (this._invTypes.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBluePrintTypeIDChanging(value);
+					this.OnLocationIDChanging(value);
 					this.SendPropertyChanging();
-					this._BluePrintTypeID = value;
-					this.SendPropertyChanged("BluePrintTypeID");
-					this.OnBluePrintTypeIDChanged();
+					this._LocationID = value;
+					this.SendPropertyChanged("LocationID");
+					this.OnLocationIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxProductionLimit", DbType="Int NOT NULL")]
-		public int MaxProductionLimit
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string LocationName
 		{
 			get
 			{
-				return this._MaxProductionLimit;
+				return this._LocationName;
 			}
 			set
 			{
-				if ((this._MaxProductionLimit != value))
+				if ((this._LocationName != value))
 				{
-					this.OnMaxProductionLimitChanging(value);
+					this.OnLocationNameChanging(value);
 					this.SendPropertyChanging();
-					this._MaxProductionLimit = value;
-					this.SendPropertyChanged("MaxProductionLimit");
-					this.OnMaxProductionLimitChanged();
+					this._LocationName = value;
+					this.SendPropertyChanged("LocationName");
+					this.OnLocationNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetaGroupID", DbType="Int NOT NULL")]
-		public int MetaGroupID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegionID", DbType="Int NOT NULL")]
+		public int RegionID
 		{
 			get
 			{
-				return this._MetaGroupID;
+				return this._RegionID;
 			}
 			set
 			{
-				if ((this._MetaGroupID != value))
+				if ((this._RegionID != value))
 				{
-					this.OnMetaGroupIDChanging(value);
+					this.OnRegionIDChanging(value);
 					this.SendPropertyChanging();
-					this._MetaGroupID = value;
-					this.SendPropertyChanged("MetaGroupID");
-					this.OnMetaGroupIDChanged();
+					this._RegionID = value;
+					this.SendPropertyChanged("RegionID");
+					this.OnRegionIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OnMarket", DbType="Bit NOT NULL")]
-		public bool OnMarket
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SellTex", DbType="Float NOT NULL")]
+		public double SellTex
 		{
 			get
 			{
-				return this._OnMarket;
+				return this._SellTex;
 			}
 			set
 			{
-				if ((this._OnMarket != value))
+				if ((this._SellTex != value))
 				{
-					this.OnOnMarketChanging(value);
+					this.OnSellTexChanging(value);
 					this.SendPropertyChanging();
-					this._OnMarket = value;
-					this.SendPropertyChanged("OnMarket");
-					this.OnOnMarketChanged();
+					this._SellTex = value;
+					this.SendPropertyChanged("SellTex");
+					this.OnSellTexChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivityMaterials", Storage="_industryActivityMaterials", ThisKey="BluePrintTypeID", OtherKey="blueprintTypeID")]
-		public EntitySet<industryActivityMaterials> industryActivityMaterials
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AgencyFee", DbType="Float NOT NULL")]
+		public double AgencyFee
 		{
 			get
 			{
-				return this._industryActivityMaterials;
+				return this._AgencyFee;
 			}
 			set
 			{
-				this._industryActivityMaterials.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivities", Storage="_industryActivities", ThisKey="BluePrintTypeID", OtherKey="blueprintTypeID")]
-		public EntitySet<industryActivities> industryActivities
-		{
-			get
-			{
-				return this._industryActivities;
-			}
-			set
-			{
-				this._industryActivities.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_OwnedBluePrints", Storage="_OwnedBluePrints", ThisKey="BluePrintTypeID", OtherKey="BluePrintID")]
-		public EntitySet<OwnedBluePrints> OwnedBluePrints
-		{
-			get
-			{
-				return this._OwnedBluePrints;
-			}
-			set
-			{
-				this._OwnedBluePrints.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_BluePrints", Storage="_invTypes", ThisKey="BluePrintTypeID", OtherKey="typeID", IsForeignKey=true)]
-		public invTypes invTypes
-		{
-			get
-			{
-				return this._invTypes.Entity;
-			}
-			set
-			{
-				invTypes previousValue = this._invTypes.Entity;
-				if (((previousValue != value) 
-							|| (this._invTypes.HasLoadedOrAssignedValue == false)))
+				if ((this._AgencyFee != value))
 				{
+					this.OnAgencyFeeChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._invTypes.Entity = null;
-						previousValue.BluePrints = null;
-					}
-					this._invTypes.Entity = value;
-					if ((value != null))
-					{
-						value.BluePrints = this;
-						this._BluePrintTypeID = value.typeID;
-					}
-					else
-					{
-						this._BluePrintTypeID = default(int);
-					}
-					this.SendPropertyChanged("invTypes");
+					this._AgencyFee = value;
+					this.SendPropertyChanged("AgencyFee");
+					this.OnAgencyFeeChanged();
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManufactCostIndex", DbType="Float NOT NULL")]
+		public double ManufactCostIndex
+		{
+			get
+			{
+				return this._ManufactCostIndex;
+			}
+			set
+			{
+				if ((this._ManufactCostIndex != value))
+				{
+					this.OnManufactCostIndexChanging(value);
+					this.SendPropertyChanging();
+					this._ManufactCostIndex = value;
+					this.SendPropertyChanged("ManufactCostIndex");
+					this.OnManufactCostIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MECostIndex", DbType="Float NOT NULL")]
+		public double MECostIndex
+		{
+			get
+			{
+				return this._MECostIndex;
+			}
+			set
+			{
+				if ((this._MECostIndex != value))
+				{
+					this.OnMECostIndexChanging(value);
+					this.SendPropertyChanging();
+					this._MECostIndex = value;
+					this.SendPropertyChanged("MECostIndex");
+					this.OnMECostIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TECostIndex", DbType="Float NOT NULL")]
+		public double TECostIndex
+		{
+			get
+			{
+				return this._TECostIndex;
+			}
+			set
+			{
+				if ((this._TECostIndex != value))
+				{
+					this.OnTECostIndexChanging(value);
+					this.SendPropertyChanging();
+					this._TECostIndex = value;
+					this.SendPropertyChanged("TECostIndex");
+					this.OnTECostIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CopyCostIndex", DbType="Float NOT NULL")]
+		public double CopyCostIndex
+		{
+			get
+			{
+				return this._CopyCostIndex;
+			}
+			set
+			{
+				if ((this._CopyCostIndex != value))
+				{
+					this.OnCopyCostIndexChanging(value);
+					this.SendPropertyChanging();
+					this._CopyCostIndex = value;
+					this.SendPropertyChanged("CopyCostIndex");
+					this.OnCopyCostIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InventionCostIndex", DbType="Float NOT NULL")]
+		public double InventionCostIndex
+		{
+			get
+			{
+				return this._InventionCostIndex;
+			}
+			set
+			{
+				if ((this._InventionCostIndex != value))
+				{
+					this.OnInventionCostIndexChanging(value);
+					this.SendPropertyChanging();
+					this._InventionCostIndex = value;
+					this.SendPropertyChanged("InventionCostIndex");
+					this.OnInventionCostIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReactionCostIndex", DbType="Float NOT NULL")]
+		public double ReactionCostIndex
+		{
+			get
+			{
+				return this._ReactionCostIndex;
+			}
+			set
+			{
+				if ((this._ReactionCostIndex != value))
+				{
+					this.OnReactionCostIndexChanging(value);
+					this.SendPropertyChanging();
+					this._ReactionCostIndex = value;
+					this.SendPropertyChanged("ReactionCostIndex");
+					this.OnReactionCostIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Locations_MarketPrice", Storage="_MarketPrice", ThisKey="LocationID", OtherKey="LocationID")]
+		public EntitySet<MarketPrice> MarketPrice
+		{
+			get
+			{
+				return this._MarketPrice;
+			}
+			set
+			{
+				this._MarketPrice.Assign(value);
 			}
 		}
 		
@@ -1804,45 +2510,261 @@ namespace EVEASS_V1
 			}
 		}
 		
-		private void attach_industryActivityMaterials(industryActivityMaterials entity)
+		private void attach_MarketPrice(MarketPrice entity)
 		{
 			this.SendPropertyChanging();
-			entity.BluePrints = this;
+			entity.Locations = this;
 		}
 		
-		private void detach_industryActivityMaterials(industryActivityMaterials entity)
+		private void detach_MarketPrice(MarketPrice entity)
 		{
 			this.SendPropertyChanging();
-			entity.BluePrints = null;
-		}
-		
-		private void attach_industryActivities(industryActivities entity)
-		{
-			this.SendPropertyChanging();
-			entity.BluePrints = this;
-		}
-		
-		private void detach_industryActivities(industryActivities entity)
-		{
-			this.SendPropertyChanging();
-			entity.BluePrints = null;
-		}
-		
-		private void attach_OwnedBluePrints(OwnedBluePrints entity)
-		{
-			this.SendPropertyChanging();
-			entity.BluePrints = this;
-		}
-		
-		private void detach_OwnedBluePrints(OwnedBluePrints entity)
-		{
-			this.SendPropertyChanging();
-			entity.BluePrints = null;
+			entity.Locations = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.industryActivityMaterials")]
-	public partial class industryActivityMaterials : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MarketPrice")]
+	public partial class MarketPrice : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TypeID;
+		
+		private long _LocationID;
+		
+		private decimal _MinSellPrice;
+		
+		private decimal _MaxBuyPrice;
+		
+		private System.DateTime _ExpiresDateTime;
+		
+		private EntityRef<invTypes> _invTypes;
+		
+		private EntityRef<Locations> _Locations;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTypeIDChanging(int value);
+    partial void OnTypeIDChanged();
+    partial void OnLocationIDChanging(long value);
+    partial void OnLocationIDChanged();
+    partial void OnMinSellPriceChanging(decimal value);
+    partial void OnMinSellPriceChanged();
+    partial void OnMaxBuyPriceChanging(decimal value);
+    partial void OnMaxBuyPriceChanged();
+    partial void OnExpiresDateTimeChanging(System.DateTime value);
+    partial void OnExpiresDateTimeChanged();
+    #endregion
+		
+		public MarketPrice()
+		{
+			this._invTypes = default(EntityRef<invTypes>);
+			this._Locations = default(EntityRef<Locations>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int TypeID
+		{
+			get
+			{
+				return this._TypeID;
+			}
+			set
+			{
+				if ((this._TypeID != value))
+				{
+					if (this._invTypes.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._TypeID = value;
+					this.SendPropertyChanged("TypeID");
+					this.OnTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationID", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long LocationID
+		{
+			get
+			{
+				return this._LocationID;
+			}
+			set
+			{
+				if ((this._LocationID != value))
+				{
+					if (this._Locations.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._LocationID = value;
+					this.SendPropertyChanged("LocationID");
+					this.OnLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinSellPrice", DbType="Decimal(18,2) NOT NULL")]
+		public decimal MinSellPrice
+		{
+			get
+			{
+				return this._MinSellPrice;
+			}
+			set
+			{
+				if ((this._MinSellPrice != value))
+				{
+					this.OnMinSellPriceChanging(value);
+					this.SendPropertyChanging();
+					this._MinSellPrice = value;
+					this.SendPropertyChanged("MinSellPrice");
+					this.OnMinSellPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxBuyPrice", DbType="Decimal(18,2) NOT NULL")]
+		public decimal MaxBuyPrice
+		{
+			get
+			{
+				return this._MaxBuyPrice;
+			}
+			set
+			{
+				if ((this._MaxBuyPrice != value))
+				{
+					this.OnMaxBuyPriceChanging(value);
+					this.SendPropertyChanging();
+					this._MaxBuyPrice = value;
+					this.SendPropertyChanged("MaxBuyPrice");
+					this.OnMaxBuyPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpiresDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime ExpiresDateTime
+		{
+			get
+			{
+				return this._ExpiresDateTime;
+			}
+			set
+			{
+				if ((this._ExpiresDateTime != value))
+				{
+					this.OnExpiresDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._ExpiresDateTime = value;
+					this.SendPropertyChanged("ExpiresDateTime");
+					this.OnExpiresDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_MarketPrice", Storage="_invTypes", ThisKey="TypeID", OtherKey="typeID", IsForeignKey=true)]
+		public invTypes invTypes
+		{
+			get
+			{
+				return this._invTypes.Entity;
+			}
+			set
+			{
+				invTypes previousValue = this._invTypes.Entity;
+				if (((previousValue != value) 
+							|| (this._invTypes.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._invTypes.Entity = null;
+						previousValue.MarketPrice.Remove(this);
+					}
+					this._invTypes.Entity = value;
+					if ((value != null))
+					{
+						value.MarketPrice.Add(this);
+						this._TypeID = value.typeID;
+					}
+					else
+					{
+						this._TypeID = default(int);
+					}
+					this.SendPropertyChanged("invTypes");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Locations_MarketPrice", Storage="_Locations", ThisKey="LocationID", OtherKey="LocationID", IsForeignKey=true)]
+		public Locations Locations
+		{
+			get
+			{
+				return this._Locations.Entity;
+			}
+			set
+			{
+				Locations previousValue = this._Locations.Entity;
+				if (((previousValue != value) 
+							|| (this._Locations.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Locations.Entity = null;
+						previousValue.MarketPrice.Remove(this);
+					}
+					this._Locations.Entity = value;
+					if ((value != null))
+					{
+						value.MarketPrice.Add(this);
+						this._LocationID = value.LocationID;
+					}
+					else
+					{
+						this._LocationID = default(long);
+					}
+					this.SendPropertyChanged("Locations");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.industryActivityProducts")]
+	public partial class industryActivityProducts : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1851,9 +2773,11 @@ namespace EVEASS_V1
 		
 		private int _activityID;
 		
-		private int _materialTypeID;
+		private int _productTypeID;
 		
 		private int _quantity;
+		
+		private double _probability;
 		
 		private EntityRef<BluePrints> _BluePrints;
 		
@@ -1867,13 +2791,15 @@ namespace EVEASS_V1
     partial void OnblueprintTypeIDChanged();
     partial void OnactivityIDChanging(int value);
     partial void OnactivityIDChanged();
-    partial void OnmaterialTypeIDChanging(int value);
-    partial void OnmaterialTypeIDChanged();
+    partial void OnproductTypeIDChanging(int value);
+    partial void OnproductTypeIDChanged();
     partial void OnquantityChanging(int value);
     partial void OnquantityChanged();
+    partial void OnprobabilityChanging(double value);
+    partial void OnprobabilityChanged();
     #endregion
 		
-		public industryActivityMaterials()
+		public industryActivityProducts()
 		{
 			this._BluePrints = default(EntityRef<BluePrints>);
 			this._invTypes = default(EntityRef<invTypes>);
@@ -1924,26 +2850,26 @@ namespace EVEASS_V1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_materialTypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int materialTypeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_productTypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int productTypeID
 		{
 			get
 			{
-				return this._materialTypeID;
+				return this._productTypeID;
 			}
 			set
 			{
-				if ((this._materialTypeID != value))
+				if ((this._productTypeID != value))
 				{
 					if (this._invTypes.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnmaterialTypeIDChanging(value);
+					this.OnproductTypeIDChanging(value);
 					this.SendPropertyChanging();
-					this._materialTypeID = value;
-					this.SendPropertyChanged("materialTypeID");
-					this.OnmaterialTypeIDChanged();
+					this._productTypeID = value;
+					this.SendPropertyChanged("productTypeID");
+					this.OnproductTypeIDChanged();
 				}
 			}
 		}
@@ -1968,7 +2894,27 @@ namespace EVEASS_V1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivityMaterials", Storage="_BluePrints", ThisKey="blueprintTypeID", OtherKey="BluePrintTypeID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_probability", DbType="Float NOT NULL")]
+		public double probability
+		{
+			get
+			{
+				return this._probability;
+			}
+			set
+			{
+				if ((this._probability != value))
+				{
+					this.OnprobabilityChanging(value);
+					this.SendPropertyChanging();
+					this._probability = value;
+					this.SendPropertyChanged("probability");
+					this.OnprobabilityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivityProducts", Storage="_BluePrints", ThisKey="blueprintTypeID", OtherKey="BluePrintTypeID", IsForeignKey=true)]
 		public BluePrints BluePrints
 		{
 			get
@@ -1985,12 +2931,12 @@ namespace EVEASS_V1
 					if ((previousValue != null))
 					{
 						this._BluePrints.Entity = null;
-						previousValue.industryActivityMaterials.Remove(this);
+						previousValue.industryActivityProducts.Remove(this);
 					}
 					this._BluePrints.Entity = value;
 					if ((value != null))
 					{
-						value.industryActivityMaterials.Add(this);
+						value.industryActivityProducts.Add(this);
 						this._blueprintTypeID = value.BluePrintTypeID;
 					}
 					else
@@ -2002,7 +2948,7 @@ namespace EVEASS_V1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_industryActivityMaterials", Storage="_invTypes", ThisKey="materialTypeID", OtherKey="typeID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_industryActivityProducts", Storage="_invTypes", ThisKey="productTypeID", OtherKey="typeID", IsForeignKey=true)]
 		public invTypes invTypes
 		{
 			get
@@ -2019,17 +2965,17 @@ namespace EVEASS_V1
 					if ((previousValue != null))
 					{
 						this._invTypes.Entity = null;
-						previousValue.industryActivityMaterials.Remove(this);
+						previousValue.industryActivityProducts.Remove(this);
 					}
 					this._invTypes.Entity = value;
 					if ((value != null))
 					{
-						value.industryActivityMaterials.Add(this);
-						this._materialTypeID = value.typeID;
+						value.industryActivityProducts.Add(this);
+						this._productTypeID = value.typeID;
 					}
 					else
 					{
-						this._materialTypeID = default(int);
+						this._productTypeID = default(int);
 					}
 					this.SendPropertyChanged("invTypes");
 				}
@@ -2057,8 +3003,8 @@ namespace EVEASS_V1
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.industryActivities")]
-	public partial class industryActivities : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.industryActivitySkills")]
+	public partial class industryActivitySkills : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -2067,7 +3013,9 @@ namespace EVEASS_V1
 		
 		private int _activityID;
 		
-		private int _time;
+		private int _skillID;
+		
+		private int _level;
 		
 		private EntityRef<BluePrints> _BluePrints;
 		
@@ -2079,11 +3027,13 @@ namespace EVEASS_V1
     partial void OnblueprintTypeIDChanged();
     partial void OnactivityIDChanging(int value);
     partial void OnactivityIDChanged();
-    partial void OntimeChanging(int value);
-    partial void OntimeChanged();
+    partial void OnskillIDChanging(int value);
+    partial void OnskillIDChanged();
+    partial void OnlevelChanging(int value);
+    partial void OnlevelChanged();
     #endregion
 		
-		public industryActivities()
+		public industryActivitySkills()
 		{
 			this._BluePrints = default(EntityRef<BluePrints>);
 			OnCreated();
@@ -2133,27 +3083,47 @@ namespace EVEASS_V1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_time", DbType="Int NOT NULL")]
-		public int time
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skillID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int skillID
 		{
 			get
 			{
-				return this._time;
+				return this._skillID;
 			}
 			set
 			{
-				if ((this._time != value))
+				if ((this._skillID != value))
 				{
-					this.OntimeChanging(value);
+					this.OnskillIDChanging(value);
 					this.SendPropertyChanging();
-					this._time = value;
-					this.SendPropertyChanged("time");
-					this.OntimeChanged();
+					this._skillID = value;
+					this.SendPropertyChanged("skillID");
+					this.OnskillIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivities", Storage="_BluePrints", ThisKey="blueprintTypeID", OtherKey="BluePrintTypeID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[level]", Storage="_level", DbType="Int NOT NULL")]
+		public int level
+		{
+			get
+			{
+				return this._level;
+			}
+			set
+			{
+				if ((this._level != value))
+				{
+					this.OnlevelChanging(value);
+					this.SendPropertyChanging();
+					this._level = value;
+					this.SendPropertyChanged("level");
+					this.OnlevelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_industryActivitySkills", Storage="_BluePrints", ThisKey="blueprintTypeID", OtherKey="BluePrintTypeID", IsForeignKey=true)]
 		public BluePrints BluePrints
 		{
 			get
@@ -2170,12 +3140,12 @@ namespace EVEASS_V1
 					if ((previousValue != null))
 					{
 						this._BluePrints.Entity = null;
-						previousValue.industryActivities.Remove(this);
+						previousValue.industryActivitySkills.Remove(this);
 					}
 					this._BluePrints.Entity = value;
 					if ((value != null))
 					{
-						value.industryActivities.Add(this);
+						value.industryActivitySkills.Add(this);
 						this._blueprintTypeID = value.BluePrintTypeID;
 					}
 					else
@@ -2214,11 +3184,13 @@ namespace EVEASS_V1
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private int _ID;
+		
 		private long _ItemID;
 		
 		private int _BluePrintID;
 		
-		private long _Owner;
+		private int _Owner;
 		
 		private bool _CharacterOwned;
 		
@@ -2238,6 +3210,8 @@ namespace EVEASS_V1
 		
 		private double _Cost;
 		
+		private bool _IsUsing;
+		
 		private EntityRef<BluePrints> _BluePrints;
 		
 		private EntityRef<Characters> _Characters;
@@ -2246,11 +3220,13 @@ namespace EVEASS_V1
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
     partial void OnItemIDChanging(long value);
     partial void OnItemIDChanged();
     partial void OnBluePrintIDChanging(int value);
     partial void OnBluePrintIDChanged();
-    partial void OnOwnerChanging(long value);
+    partial void OnOwnerChanging(int value);
     partial void OnOwnerChanged();
     partial void OnCharacterOwnedChanging(bool value);
     partial void OnCharacterOwnedChanged();
@@ -2270,6 +3246,8 @@ namespace EVEASS_V1
     partial void OnUpdateTimeChanged();
     partial void OnCostChanging(double value);
     partial void OnCostChanged();
+    partial void OnIsUsingChanging(bool value);
+    partial void OnIsUsingChanged();
     #endregion
 		
 		public OwnedBluePrints()
@@ -2279,7 +3257,27 @@ namespace EVEASS_V1
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemID", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemID", DbType="BigInt NOT NULL")]
 		public long ItemID
 		{
 			get
@@ -2323,8 +3321,8 @@ namespace EVEASS_V1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="BigInt NOT NULL")]
-		public long Owner
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Owner", DbType="Int NOT NULL")]
+		public int Owner
 		{
 			get
 			{
@@ -2527,6 +3525,26 @@ namespace EVEASS_V1
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsUsing", DbType="Bit NOT NULL")]
+		public bool IsUsing
+		{
+			get
+			{
+				return this._IsUsing;
+			}
+			set
+			{
+				if ((this._IsUsing != value))
+				{
+					this.OnIsUsingChanging(value);
+					this.SendPropertyChanging();
+					this._IsUsing = value;
+					this.SendPropertyChanged("IsUsing");
+					this.OnIsUsingChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BluePrints_OwnedBluePrints", Storage="_BluePrints", ThisKey="BluePrintID", OtherKey="BluePrintTypeID", IsForeignKey=true)]
 		public BluePrints BluePrints
 		{
@@ -2588,9 +3606,184 @@ namespace EVEASS_V1
 					}
 					else
 					{
-						this._Owner = default(long);
+						this._Owner = default(int);
 					}
 					this.SendPropertyChanged("Characters");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UniversePrice")]
+	public partial class UniversePrice : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TypeID;
+		
+		private decimal _AveragePrice;
+		
+		private decimal _AdjustedPrice;
+		
+		private System.DateTime _ExpiresIn;
+		
+		private EntityRef<invTypes> _invTypes;
+		
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTypeIDChanging(int value);
+    partial void OnTypeIDChanged();
+    partial void OnAveragePriceChanging(decimal value);
+    partial void OnAveragePriceChanged();
+    partial void OnAdjustedPriceChanging(decimal value);
+    partial void OnAdjustedPriceChanged();
+    partial void OnExpiresInChanging(System.DateTime value);
+    partial void OnExpiresInChanged();
+    #endregion
+		
+		public UniversePrice()
+		{
+			this._invTypes = default(EntityRef<invTypes>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int TypeID
+		{
+			get
+			{
+				return this._TypeID;
+			}
+			set
+			{
+				if ((this._TypeID != value))
+				{
+					if (this._invTypes.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._TypeID = value;
+					this.SendPropertyChanged("TypeID");
+					this.OnTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AveragePrice", DbType="Decimal(18,2) NOT NULL")]
+		public decimal AveragePrice
+		{
+			get
+			{
+				return this._AveragePrice;
+			}
+			set
+			{
+				if ((this._AveragePrice != value))
+				{
+					this.OnAveragePriceChanging(value);
+					this.SendPropertyChanging();
+					this._AveragePrice = value;
+					this.SendPropertyChanged("AveragePrice");
+					this.OnAveragePriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AdjustedPrice", DbType="Decimal(18,2) NOT NULL")]
+		public decimal AdjustedPrice
+		{
+			get
+			{
+				return this._AdjustedPrice;
+			}
+			set
+			{
+				if ((this._AdjustedPrice != value))
+				{
+					this.OnAdjustedPriceChanging(value);
+					this.SendPropertyChanging();
+					this._AdjustedPrice = value;
+					this.SendPropertyChanged("AdjustedPrice");
+					this.OnAdjustedPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpiresIn", DbType="DateTime NOT NULL")]
+		public System.DateTime ExpiresIn
+		{
+			get
+			{
+				return this._ExpiresIn;
+			}
+			set
+			{
+				if ((this._ExpiresIn != value))
+				{
+					this.OnExpiresInChanging(value);
+					this.SendPropertyChanging();
+					this._ExpiresIn = value;
+					this.SendPropertyChanged("ExpiresIn");
+					this.OnExpiresInChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="invTypes_UniversePrice", Storage="_invTypes", ThisKey="TypeID", OtherKey="typeID", IsForeignKey=true)]
+		public invTypes invTypes
+		{
+			get
+			{
+				return this._invTypes.Entity;
+			}
+			set
+			{
+				invTypes previousValue = this._invTypes.Entity;
+				if (((previousValue != value) 
+							|| (this._invTypes.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._invTypes.Entity = null;
+						previousValue.UniversePrice = null;
+					}
+					this._invTypes.Entity = value;
+					if ((value != null))
+					{
+						value.UniversePrice = this;
+						this._TypeID = value.typeID;
+					}
+					else
+					{
+						this._TypeID = default(int);
+					}
+					this.SendPropertyChanged("invTypes");
 				}
 			}
 		}

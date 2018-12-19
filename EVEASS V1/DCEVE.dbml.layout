@@ -1,116 +1,175 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 10.875" name="DCEVE">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.125, 11.125" name="DCEVE">
   <DataContextMoniker Name="/DCEVEDataContext" />
   <nestedChildShapes>
-    <classShape Id="0c27f632-5cd6-4097-bb81-4f9cbad0ea0c" absoluteBounds="5.875, 5.75, 2, 1.3525109863281251">
-      <DataClassMoniker Name="/DCEVEDataContext/CharacterSkills" />
-      <nestedChildShapes>
-        <elementListCompartment Id="a914b653-a61f-4149-916f-38a90d197c6c" absoluteBounds="5.8900000000000006, 6.2100000000000009, 1.9700000000000002, 0.792510986328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="994b6e43-3779-4d53-8aba-c8494c958283" absoluteBounds="3.5, 0.75, 2, 1.5373050944010416">
-      <DataClassMoniker Name="/DCEVEDataContext/industryActivitySkills" />
-      <nestedChildShapes>
-        <elementListCompartment Id="53c368e6-b9a7-4c6c-abd2-efa0ef199487" absoluteBounds="3.5150000000000006, 1.21, 1.9700000000000002, 0.97730509440104174" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="bea5200b-2568-47b8-bd94-669eb0b9f637" absoluteBounds="5.75, 0.75, 2, 4.6788049316406246">
+    <classShape Id="bea5200b-2568-47b8-bd94-669eb0b9f637" absoluteBounds="8.125, 0.75, 2, 4.6788049316406246">
       <DataClassMoniker Name="/DCEVEDataContext/invTypes" />
       <nestedChildShapes>
-        <elementListCompartment Id="e826142f-13d2-40e3-878b-f5fbbf99b172" absoluteBounds="5.765, 1.21, 1.9700000000000002, 4.118804931640625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e826142f-13d2-40e3-878b-f5fbbf99b172" absoluteBounds="8.14, 1.21, 1.9700000000000002, 4.118804931640625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.8125 : 5.42880493164062); (6.8125 : 5.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/DCEVEDataContext/invTypes/invTypes_CharacterSkills" />
-      <nodes>
-        <classShapeMoniker Id="bea5200b-2568-47b8-bd94-669eb0b9f637" />
-        <classShapeMoniker Id="0c27f632-5cd6-4097-bb81-4f9cbad0ea0c" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 1.51865254720052); (5.5 : 1.51865254720052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/DCEVEDataContext/invTypes/invTypes_industryActivitySkills" />
-      <nodes>
-        <classShapeMoniker Id="bea5200b-2568-47b8-bd94-669eb0b9f637" />
-        <classShapeMoniker Id="994b6e43-3779-4d53-8aba-c8494c958283" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="a2921e89-1a9d-4e4b-9a4e-88a685aca9ef" absoluteBounds="5.875, 7.375, 2, 3.2004520670572916">
-      <DataClassMoniker Name="/DCEVEDataContext/Characters" />
-      <nestedChildShapes>
-        <elementListCompartment Id="f37eda7f-097b-4bb2-a3ff-3b432a3945ef" absoluteBounds="5.8900000000000006, 7.835, 1.9700000000000002, 2.6404520670572915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(6.875 : 7.375); (6.875 : 7.10251098632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/DCEVEDataContext/Characters/Characters_CharacterSkills" />
-      <nodes>
-        <classShapeMoniker Id="a2921e89-1a9d-4e4b-9a4e-88a685aca9ef" />
-        <classShapeMoniker Id="0c27f632-5cd6-4097-bb81-4f9cbad0ea0c" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="26507ba9-eeb3-44ef-819b-2b7a6097cd9f" absoluteBounds="3.5, 5.75, 2, 1.5373050944010416">
+    <classShape Id="26507ba9-eeb3-44ef-819b-2b7a6097cd9f" absoluteBounds="5.875, 5.75, 2, 1.5373050944010416">
       <DataClassMoniker Name="/DCEVEDataContext/BluePrints" />
       <nestedChildShapes>
-        <elementListCompartment Id="130f0b66-fa47-427b-8ef8-4d061a089c03" absoluteBounds="3.5150000000000006, 6.21, 1.9700000000000002, 0.97730509440104174" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="130f0b66-fa47-427b-8ef8-4d061a089c03" absoluteBounds="5.8900000000000006, 6.21, 1.9700000000000002, 0.97730509440104174" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.75 : 5.42880493164062); (5.5 : 5.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.125 : 5.42880493164062); (7.875 : 5.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DCEVEDataContext/invTypes/invTypes_BluePrints" />
       <nodes>
         <classShapeMoniker Id="bea5200b-2568-47b8-bd94-669eb0b9f637" />
         <classShapeMoniker Id="26507ba9-eeb3-44ef-819b-2b7a6097cd9f" />
       </nodes>
     </associationConnector>
-    <classShape Id="0f8f8676-120b-4978-8959-3d257175024b" absoluteBounds="3.375, 4, 2, 1.5373050944010416">
+    <classShape Id="0f8f8676-120b-4978-8959-3d257175024b" absoluteBounds="5.75, 0.875, 2, 1.5373050944010416">
       <DataClassMoniker Name="/DCEVEDataContext/industryActivityMaterials" />
       <nestedChildShapes>
-        <elementListCompartment Id="4d0cf593-d4e2-46b0-9161-7dab4bc39413" absoluteBounds="3.3899999999999997, 4.46, 1.9700000000000002, 0.97730509440104174" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4d0cf593-d4e2-46b0-9161-7dab4bc39413" absoluteBounds="5.765, 1.335, 1.9700000000000002, 0.97730509440104174" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.4375 : 5.75); (4.4375 : 5.53730509440104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.843748 : 5.75); (6.843748 : 5.5); (5.625 : 5.5); (5.625 : 2.66230509440104); (5.5 : 2.66230509440104); (5.5 : 1.64365254720052); (5.75 : 1.64365254720052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DCEVEDataContext/BluePrints/BluePrints_industryActivityMaterials" />
       <nodes>
         <classShapeMoniker Id="26507ba9-eeb3-44ef-819b-2b7a6097cd9f" />
         <classShapeMoniker Id="0f8f8676-120b-4978-8959-3d257175024b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.75 : 4.68314996582031); (5.375 : 4.68314996582031)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.125 : 1.64365254720052); (7.75 : 1.64365254720052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DCEVEDataContext/invTypes/invTypes_industryActivityMaterials" />
       <nodes>
         <classShapeMoniker Id="bea5200b-2568-47b8-bd94-669eb0b9f637" />
         <classShapeMoniker Id="0f8f8676-120b-4978-8959-3d257175024b" />
       </nodes>
     </associationConnector>
-    <classShape Id="60ec2759-e6b8-4f14-9dad-4df67a8ecf44" absoluteBounds="1.125, 4.125, 2, 1.3525109863281251">
+    <classShape Id="60ec2759-e6b8-4f14-9dad-4df67a8ecf44" absoluteBounds="5.875, 4, 2, 1.3525109863281251">
       <DataClassMoniker Name="/DCEVEDataContext/industryActivities" />
       <nestedChildShapes>
-        <elementListCompartment Id="83bc64d1-37ec-4477-a2fe-cfcc7c3d52ac" absoluteBounds="1.1399999999999997, 4.585, 1.9700000000000002, 0.792510986328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="83bc64d1-37ec-4477-a2fe-cfcc7c3d52ac" absoluteBounds="5.89, 4.46, 1.9700000000000002, 0.792510986328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.5 : 5.75); (3.125 : 5.47751098632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(7.3906215 : 5.75); (7.3906215 : 5.35251098632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DCEVEDataContext/BluePrints/BluePrints_industryActivities" />
       <nodes>
         <classShapeMoniker Id="26507ba9-eeb3-44ef-819b-2b7a6097cd9f" />
         <classShapeMoniker Id="60ec2759-e6b8-4f14-9dad-4df67a8ecf44" />
       </nodes>
     </associationConnector>
-    <classShape Id="2b291583-8902-40ed-80b9-07855852102b" absoluteBounds="3.5, 7.5, 2, 3.0156579589843751">
-      <DataClassMoniker Name="/DCEVEDataContext/OwnedBluePrints" />
+    <classShape Id="3febc622-4010-4a7f-848e-342c22e44873" absoluteBounds="8.125, 5.875, 2, 1.3525109863281251">
+      <DataClassMoniker Name="/DCEVEDataContext/CharacterSkills" />
       <nestedChildShapes>
-        <elementListCompartment Id="d427a11a-aa0b-415e-9bf6-0c6e653ff23f" absoluteBounds="3.515, 7.9600000000000009, 1.9700000000000002, 2.455657958984375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ead62a8a-3408-48b5-8791-3dd3eab657c9" absoluteBounds="8.14, 6.335, 1.9700000000000002, 0.792510986328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.5 : 7.28730509440104); (4.5 : 7.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.1562525 : 5.42880493164062); (9.1562525 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DCEVEDataContext/invTypes/invTypes_CharacterSkills" />
+      <nodes>
+        <classShapeMoniker Id="bea5200b-2568-47b8-bd94-669eb0b9f637" />
+        <classShapeMoniker Id="3febc622-4010-4a7f-848e-342c22e44873" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b87bb8d9-145b-47d7-9a33-ef7c583dac3a" absoluteBounds="8.125, 7.5, 2, 3.2004520670572916">
+      <DataClassMoniker Name="/DCEVEDataContext/Characters" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9601a7a9-d478-495d-9896-d05800c05a1a" absoluteBounds="8.14, 7.9600000000000009, 1.9700000000000002, 2.6404520670572915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.125 : 7.5); (9.125 : 7.22751098632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DCEVEDataContext/Characters/Characters_CharacterSkills" />
+      <nodes>
+        <classShapeMoniker Id="b87bb8d9-145b-47d7-9a33-ef7c583dac3a" />
+        <classShapeMoniker Id="3febc622-4010-4a7f-848e-342c22e44873" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="1fe5b921-6807-49dd-af54-28b319fc22d6" absoluteBounds="12.875, 5.875, 2, 2.8308638509114581">
+      <DataClassMoniker Name="/DCEVEDataContext/Locations" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f692f919-c691-4940-8257-a28fe8c3fb38" absoluteBounds="12.89, 6.335, 1.9700000000000002, 2.270863850911458" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2c80c87c-ebf7-4e8f-929f-aef80fe67ade" absoluteBounds="10.5, 5.875, 2, 1.7220992024739581">
+      <DataClassMoniker Name="/DCEVEDataContext/MarketPrice" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6f0caecf-f4a2-4eaf-984e-6749a415b0d1" absoluteBounds="10.515, 6.335, 1.9700000000000002, 1.1620992024739583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(10.125 : 5.42880493164062); (10.5 : 5.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DCEVEDataContext/invTypes/invTypes_MarketPrice" />
+      <nodes>
+        <classShapeMoniker Id="bea5200b-2568-47b8-bd94-669eb0b9f637" />
+        <classShapeMoniker Id="2c80c87c-ebf7-4e8f-929f-aef80fe67ade" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.875 : 6.73604960123698); (12.5 : 6.73604960123698)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DCEVEDataContext/Locations/Locations_MarketPrice" />
+      <nodes>
+        <classShapeMoniker Id="1fe5b921-6807-49dd-af54-28b319fc22d6" />
+        <classShapeMoniker Id="2c80c87c-ebf7-4e8f-929f-aef80fe67ade" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="27435eba-8d59-4932-b84c-13f08550bb1e" absoluteBounds="3.375, 4.625, 2, 1.7220992024739581">
+      <DataClassMoniker Name="/DCEVEDataContext/industryActivityProducts" />
+      <nestedChildShapes>
+        <elementListCompartment Id="43b7c73d-894d-4f93-aeab-0bdb6a60daac" absoluteBounds="3.3899999999999997, 5.085, 1.9700000000000002, 1.1620992024739583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.875 : 6.04854960123698); (5.375 : 6.04854960123698)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DCEVEDataContext/BluePrints/BluePrints_industryActivityProducts" />
+      <nodes>
+        <classShapeMoniker Id="26507ba9-eeb3-44ef-819b-2b7a6097cd9f" />
+        <classShapeMoniker Id="27435eba-8d59-4932-b84c-13f08550bb1e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.125 : 3.29990254720052); (4.375 : 3.29990254720052); (4.375 : 4.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DCEVEDataContext/invTypes/invTypes_industryActivityProducts" />
+      <nodes>
+        <classShapeMoniker Id="bea5200b-2568-47b8-bd94-669eb0b9f637" />
+        <classShapeMoniker Id="27435eba-8d59-4932-b84c-13f08550bb1e" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="40bbe536-3ce4-446f-ac89-2a701f9ded87" absoluteBounds="1.125, 4.75, 2, 1.5373050944010416">
+      <DataClassMoniker Name="/DCEVEDataContext/industryActivitySkills" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b9af4393-4912-4017-af2a-447ccfa4a818" absoluteBounds="1.1400000000000001, 5.21, 1.9700000000000002, 0.97730509440104174" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.875 : 6.79854960123698); (2.125 : 6.79854960123698); (2.125 : 6.28730509440104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DCEVEDataContext/BluePrints/BluePrints_industryActivitySkills" />
+      <nodes>
+        <classShapeMoniker Id="26507ba9-eeb3-44ef-819b-2b7a6097cd9f" />
+        <classShapeMoniker Id="40bbe536-3ce4-446f-ac89-2a701f9ded87" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4d3cf0ae-0dee-441f-b663-75969020abc7" absoluteBounds="5.875, 7.5, 2, 3.3852461751302081">
+      <DataClassMoniker Name="/DCEVEDataContext/OwnedBluePrints" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d9a67bdf-ec9b-4d7d-aa75-51aa4d8e3603" absoluteBounds="5.89, 7.9600000000000009, 1.9700000000000002, 2.825246175130208" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.34375 : 7.28730509440104); (7.34375 : 7.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DCEVEDataContext/BluePrints/BluePrints_OwnedBluePrints" />
       <nodes>
         <classShapeMoniker Id="26507ba9-eeb3-44ef-819b-2b7a6097cd9f" />
-        <classShapeMoniker Id="2b291583-8902-40ed-80b9-07855852102b" />
+        <classShapeMoniker Id="4d3cf0ae-0dee-441f-b663-75969020abc7" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.875 : 9.00782897949219); (5.5 : 9.00782897949219)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.125 : 9.10022603352865); (7.875 : 9.10022603352865)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DCEVEDataContext/Characters/Characters_OwnedBluePrints" />
       <nodes>
-        <classShapeMoniker Id="a2921e89-1a9d-4e4b-9a4e-88a685aca9ef" />
-        <classShapeMoniker Id="2b291583-8902-40ed-80b9-07855852102b" />
+        <classShapeMoniker Id="b87bb8d9-145b-47d7-9a33-ef7c583dac3a" />
+        <classShapeMoniker Id="4d3cf0ae-0dee-441f-b663-75969020abc7" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6e24a8cf-99f5-47c7-b41a-aa22a667fb8d" absoluteBounds="10.5, 7.75, 2, 1.5373050944010416">
+      <DataClassMoniker Name="/DCEVEDataContext/UniversePrice" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bfeacb29-d5d9-4524-868e-a0bf81310bff" absoluteBounds="10.515, 8.21, 1.9700000000000002, 0.97730509440104174" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.125 : 5.42880493164062); (9.125 : 5.8125); (10.1875 : 5.8125); (10.1875 : 8.51865254720052); (10.5 : 8.51865254720052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DCEVEDataContext/invTypes/invTypes_UniversePrice" />
+      <nodes>
+        <classShapeMoniker Id="bea5200b-2568-47b8-bd94-669eb0b9f637" />
+        <classShapeMoniker Id="6e24a8cf-99f5-47c7-b41a-aa22a667fb8d" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

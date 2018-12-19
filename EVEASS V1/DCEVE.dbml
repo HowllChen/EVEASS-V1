@@ -1,23 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EVE DB" Class="DCEVEDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=HOWLLCHEN;Initial Catalog=&quot;EVE DB&quot;;Integrated Security=True" SettingsObjectName="EVEASS_V1.Properties.Settings" SettingsPropertyName="EVE_DBConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.CharacterSkills" Member="CharacterSkills">
-    <Type Name="CharacterSkills">
-      <Column Name="CharacterID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SkillID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="invTypes_CharacterSkills" Member="invTypes" ThisKey="SkillID" OtherKey="typeID" Type="invTypes" IsForeignKey="true" />
-      <Association Name="Characters_CharacterSkills" Member="Characters" ThisKey="CharacterID" OtherKey="CharacterID" Type="Characters" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.industryActivitySkills" Member="industryActivitySkills">
-    <Type Name="industryActivitySkills">
-      <Column Name="blueprintTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="activityID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="skillID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="[level]" Member="level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="invTypes_industryActivitySkills" Member="invTypes" ThisKey="skillID" OtherKey="typeID" Type="invTypes" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.invTypes" Member="invTypes">
     <Type Name="invTypes">
       <Column Name="typeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -41,15 +23,58 @@
       <Column Name="sofFactionName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="sofMaterialSetID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="typeNameCN" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="invTypes_CharacterSkills" Member="CharacterSkills" ThisKey="typeID" OtherKey="SkillID" Type="CharacterSkills" />
-      <Association Name="invTypes_industryActivitySkills" Member="industryActivitySkills" ThisKey="typeID" OtherKey="skillID" Type="industryActivitySkills" />
       <Association Name="invTypes_BluePrints" Member="BluePrints" ThisKey="typeID" OtherKey="BluePrintTypeID" Type="BluePrints" Cardinality="One" />
       <Association Name="invTypes_industryActivityMaterials" Member="industryActivityMaterials" ThisKey="typeID" OtherKey="materialTypeID" Type="industryActivityMaterials" />
+      <Association Name="invTypes_CharacterSkills" Member="CharacterSkills" ThisKey="typeID" OtherKey="SkillID" Type="CharacterSkills" />
+      <Association Name="invTypes_MarketPrice" Member="MarketPrice" ThisKey="typeID" OtherKey="TypeID" Type="MarketPrice" />
+      <Association Name="invTypes_industryActivityProducts" Member="industryActivityProducts" ThisKey="typeID" OtherKey="productTypeID" Type="industryActivityProducts" />
+      <Association Name="invTypes_UniversePrice" Member="UniversePrice" ThisKey="typeID" OtherKey="TypeID" Type="UniversePrice" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BluePrints" Member="BluePrints">
+    <Type Name="BluePrints">
+      <Column Name="BluePrintTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaxProductionLimit" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MetaGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OnMarket" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="BluePrints_industryActivityMaterials" Member="industryActivityMaterials" ThisKey="BluePrintTypeID" OtherKey="blueprintTypeID" Type="industryActivityMaterials" />
+      <Association Name="BluePrints_industryActivities" Member="industryActivities" ThisKey="BluePrintTypeID" OtherKey="blueprintTypeID" Type="industryActivities" />
+      <Association Name="BluePrints_industryActivityProducts" Member="industryActivityProducts" ThisKey="BluePrintTypeID" OtherKey="blueprintTypeID" Type="industryActivityProducts" />
+      <Association Name="BluePrints_industryActivitySkills" Member="industryActivitySkills" ThisKey="BluePrintTypeID" OtherKey="blueprintTypeID" Type="industryActivitySkills" />
+      <Association Name="BluePrints_OwnedBluePrints" Member="OwnedBluePrints" ThisKey="BluePrintTypeID" OtherKey="BluePrintID" Type="OwnedBluePrints" />
+      <Association Name="invTypes_BluePrints" Member="invTypes" ThisKey="BluePrintTypeID" OtherKey="typeID" Type="invTypes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.industryActivityMaterials" Member="industryActivityMaterials">
+    <Type Name="industryActivityMaterials">
+      <Column Name="blueprintTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="activityID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="materialTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="BluePrints_industryActivityMaterials" Member="BluePrints" ThisKey="blueprintTypeID" OtherKey="BluePrintTypeID" Type="BluePrints" IsForeignKey="true" />
+      <Association Name="invTypes_industryActivityMaterials" Member="invTypeMaterial" Storage="_invTypes" ThisKey="materialTypeID" OtherKey="typeID" Type="invTypes" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.industryActivities" Member="industryActivities">
+    <Type Name="industryActivities">
+      <Column Name="blueprintTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="activityID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="BluePrints_industryActivities" Member="BluePrints" ThisKey="blueprintTypeID" OtherKey="BluePrintTypeID" Type="BluePrints" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CharacterSkills" Member="CharacterSkills">
+    <Type Name="CharacterSkills">
+      <Column Name="CharacterID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SkillID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[Level]" Member="Level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="invTypes_CharacterSkills" Member="invTypes" ThisKey="SkillID" OtherKey="typeID" Type="invTypes" IsForeignKey="true" />
+      <Association Name="Characters_CharacterSkills" Member="Characters" ThisKey="CharacterID" OtherKey="CharacterID" Type="Characters" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Characters" Member="Characters">
     <Type Name="Characters">
-      <Column Name="CharacterID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CharacterID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CorporationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CharacterName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ManuCapability" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -66,41 +91,59 @@
       <Association Name="Characters_OwnedBluePrints" Member="OwnedBluePrints" ThisKey="CharacterID" OtherKey="Owner" Type="OwnedBluePrints" />
     </Type>
   </Table>
-  <Table Name="dbo.BluePrints" Member="BluePrints">
-    <Type Name="BluePrints">
-      <Column Name="BluePrintTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaxProductionLimit" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MetaGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="OnMarket" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="BluePrints_industryActivityMaterials" Member="industryActivityMaterials" ThisKey="BluePrintTypeID" OtherKey="blueprintTypeID" Type="industryActivityMaterials" />
-      <Association Name="BluePrints_industryActivities" Member="industryActivities" ThisKey="BluePrintTypeID" OtherKey="blueprintTypeID" Type="industryActivities" />
-      <Association Name="BluePrints_OwnedBluePrints" Member="OwnedBluePrints" ThisKey="BluePrintTypeID" OtherKey="BluePrintID" Type="OwnedBluePrints" />
-      <Association Name="invTypes_BluePrints" Member="invTypes" ThisKey="BluePrintTypeID" OtherKey="typeID" Type="invTypes" IsForeignKey="true" />
+  <Table Name="dbo.Locations" Member="Locations">
+    <Type Name="Locations">
+      <Column Name="LocationID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LocationName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RegionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SellTex" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="AgencyFee" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ManufactCostIndex" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MECostIndex" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TECostIndex" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CopyCostIndex" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="InventionCostIndex" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ReactionCostIndex" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Locations_MarketPrice" Member="MarketPrice" ThisKey="LocationID" OtherKey="LocationID" Type="MarketPrice" />
     </Type>
   </Table>
-  <Table Name="dbo.industryActivityMaterials" Member="industryActivityMaterials">
-    <Type Name="industryActivityMaterials">
+  <Table Name="dbo.MarketPrice" Member="MarketPrice">
+    <Type Name="MarketPrice">
+      <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LocationID" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MinSellPrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="MaxBuyPrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ExpiresDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="invTypes_MarketPrice" Member="invTypes" ThisKey="TypeID" OtherKey="typeID" Type="invTypes" IsForeignKey="true" />
+      <Association Name="Locations_MarketPrice" Member="Locations" ThisKey="LocationID" OtherKey="LocationID" Type="Locations" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.industryActivityProducts" Member="industryActivityProducts">
+    <Type Name="industryActivityProducts">
       <Column Name="blueprintTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="activityID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="materialTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="productTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="BluePrints_industryActivityMaterials" Member="BluePrints" ThisKey="blueprintTypeID" OtherKey="BluePrintTypeID" Type="BluePrints" IsForeignKey="true" />
-      <Association Name="invTypes_industryActivityMaterials" Member="invTypes" ThisKey="materialTypeID" OtherKey="typeID" Type="invTypes" IsForeignKey="true" />
+      <Column Name="probability" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="BluePrints_industryActivityProducts" Member="BluePrints" ThisKey="blueprintTypeID" OtherKey="BluePrintTypeID" Type="BluePrints" IsForeignKey="true" />
+      <Association Name="invTypes_industryActivityProducts" Member="invTypes" ThisKey="productTypeID" OtherKey="typeID" Type="invTypes" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.industryActivities" Member="industryActivities">
-    <Type Name="industryActivities">
+  <Table Name="dbo.industryActivitySkills" Member="industryActivitySkills">
+    <Type Name="industryActivitySkills">
       <Column Name="blueprintTypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="activityID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="BluePrints_industryActivities" Member="BluePrints" ThisKey="blueprintTypeID" OtherKey="BluePrintTypeID" Type="BluePrints" IsForeignKey="true" />
+      <Column Name="skillID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[level]" Member="level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="BluePrints_industryActivitySkills" Member="BluePrints" ThisKey="blueprintTypeID" OtherKey="BluePrintTypeID" Type="BluePrints" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.OwnedBluePrints" Member="OwnedBluePrints">
     <Type Name="OwnedBluePrints">
-      <Column Name="ItemID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="BluePrintID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Owner" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Owner" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CharacterOwned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="LocationID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="LocationFlag" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
@@ -110,8 +153,18 @@
       <Column Name="Runs" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UpdateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Cost" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="IsUsing" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="BluePrints_OwnedBluePrints" Member="BluePrints" ThisKey="BluePrintID" OtherKey="BluePrintTypeID" Type="BluePrints" IsForeignKey="true" />
       <Association Name="Characters_OwnedBluePrints" Member="Characters" ThisKey="Owner" OtherKey="CharacterID" Type="Characters" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UniversePrice" Member="UniversePrice">
+    <Type Name="UniversePrice">
+      <Column Name="TypeID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AveragePrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="AdjustedPrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ExpiresIn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="invTypes_UniversePrice" Member="invTypes" ThisKey="TypeID" OtherKey="typeID" Type="invTypes" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
